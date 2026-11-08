@@ -32,6 +32,7 @@ export const projects: Project[] = [
     summary:
       'summary',
     links: [
+      /** 
       { label: 'Research', icon: 'link', href: '/research/xxx/' },
       { label: 'Publication', icon: 'file', href: '/publications/xxxx/' },
       { label: 'Post', icon: 'pencil', href: '/posts/xxx/' },
@@ -47,6 +48,7 @@ export const projects: Project[] = [
         icon: 'slides',
         href: 'https://...',
       },
+      */
     ],
   }
 ];

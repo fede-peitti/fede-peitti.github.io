@@ -7,7 +7,7 @@ export const site = {
   role: 'Research Scholar, AISAR & Teaching Assistant, UTDT',
   shortRole: 'B.Sc. in Digital Technologies',
   tagline: 'placeholder tagline',
-  bio: `I am interested in exploring and understanding how technologies can shape or learn from human behavior.
+  bio: `I am interested in exploring and understanding how technologies can shape human behavior.
    I have a B.Sc. in Digital Technologies from Universidad Torcuato Di Tella.`,
   philosophy: 'Even the saddest endings turn into beautiful memories.',
   url: 'https://pipo.com',

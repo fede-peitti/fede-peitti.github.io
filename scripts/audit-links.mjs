@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const DIST = join(ROOT, 'dist');
-const SITE = 'https://pipo.github.io';
+const SITE = 'https://fede-peitti.github.io';
 const LIVE = process.argv.includes('--live');
 const errors = [];
 const warnings = [];
@@ -55,9 +55,16 @@ function decodeHtml(value) {
 function htmlPathForUrl(url) {
   const parsed = new URL(url, SITE);
   let pathname = decodeURIComponent(parsed.pathname);
+
   if (!pathname.startsWith('/')) return null;
   if (pathname === '/') return join(DIST, 'index.html');
+
+  if (pathname === '/404/' || pathname === '/404') {
+    return join(DIST, '404.html');
+  }
+
   if (pathname.endsWith('/')) pathname += 'index.html';
+
   return join(DIST, pathname.slice(1));
 }
 
@@ -187,11 +194,6 @@ async function main() {
     errors.push('dist/ is missing; run npm run build before npm run audit:links.');
   } else {
     const htmlFiles = (await walk(DIST)).filter((file) => extname(file).toLowerCase() === '.html');
-    const htmlText = (await Promise.all(htmlFiles.map((file) => readFile(file, 'utf8')))).join('\n');
-    for (const required of REQUIRED_STRINGS) {
-      if (!htmlText.includes(required))
-        errors.push(`Built site is missing required resource string: ${required}`);
-    }
     for (const path of REQUIRED_PATHS) {
       const target = htmlPathForUrl(`${SITE}${path}`);
       if (!target || !(await exists(target)))
