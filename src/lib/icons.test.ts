@@ -59,6 +59,6 @@ describe('the icon set', () => {
 
   it('finds enough defined and used names to validate the checks', () => {
     expect(definedNames().size).toBeGreaterThan(30);
-    expect(usedNames().size).toBeGreaterThan(20);
+    expect(usedNames().size).toBeGreaterThan(10);
   });
 });

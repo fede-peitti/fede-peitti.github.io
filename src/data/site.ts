@@ -45,7 +45,7 @@ export const identity = {
 export type NavItem = { label: string; href: string; footerOnly?: boolean };
 
 export const nav: NavItem[] = [
-  { label: 'Research', href: '/research/' },
+  // { label: 'Research', href: '/research/' },
   //{ label: 'Projects', href: '/projects/', footerOnly: true },
   //{ label: 'Publications', href: '/publications/' },
   //{ label: 'Software', href: '/software/' },
