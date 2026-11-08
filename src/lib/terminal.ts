@@ -50,7 +50,7 @@ export type Effect =
   | { type: 'ask'; question: string }
   | {
       type: 'theme';
-      mode: 'light' | 'dark' | 'nord' | 'monokai' | 'cyberdeck' | 'parchment' | 'toggle' | 'crt';
+      mode: 'light' | 'dark' | 'toggle';
     }
   | { type: 'sound'; mode: 'on' | 'off' | 'toggle' | 'bell' }
   | { type: 'copy'; text?: string }
@@ -731,7 +731,6 @@ export const COMMANDS: Record<string, Cmd> = {
             'env',
             'neofetch',
             'theme',
-            'crt',
             'sound',
             'history',
             'clear',
@@ -1408,23 +1407,19 @@ export const COMMANDS: Record<string, Cmd> = {
 
   theme: {
     summary: 'switch between CS & system themes',
-    usage: 'theme [light|dark|nord|monokai|cyberdeck|parchment]',
+    usage: 'theme [light|dark]',
     run: ({ args }) => {
       const mode = (args[0] ?? '').toLowerCase();
       if (!mode) return { lines: [], effect: { type: 'theme', mode: 'toggle' } };
       if (
         mode === 'light' ||
-        mode === 'dark' ||
-        mode === 'nord' ||
-        mode === 'monokai' ||
-        mode === 'cyberdeck' ||
-        mode === 'parchment'
+        mode === 'dark' 
       ) {
         return { lines: [], effect: { type: 'theme', mode } };
       }
       return [
         {
-          text: `theme: no such theme: ${args[0]} (try light, dark, nord, monokai, cyberdeck, parchment)`,
+          text: `theme: no such theme: ${args[0]} (try light, dark)`,
           tone: 'err',
         },
       ];
@@ -2017,12 +2012,8 @@ export function complete(
       .sort();
   } else if (argv.length === 2 && !trailingSpace && command === 'theme') {
     options = [
-      'light', 'dark', 'nord', 'monokai',
-      'cyberdeck', 'parchment', 'toggle', 'crt',
+      'light', 'dark'
     ].filter((option) => option.startsWith(word.toLowerCase())).sort();
-  } else if (argv.length === 2 && !trailingSpace && command === 'crt') {
-    options = ['off', 'amber', 'green', 'cyan', 'toggle']
-      .filter((option) => option.startsWith(word.toLowerCase())).sort();
   } else if (argv.length === 2 && !trailingSpace && command === 'sound') {
     options = ['on', 'off', 'bell', 'toggle']
       .filter((option) => option.startsWith(word.toLowerCase())).sort();

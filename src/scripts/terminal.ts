@@ -282,13 +282,7 @@ export function initTerminal(
         window.setTimeout(() => window.location.assign(exitHref), reduced ? 0 : 420);
         break;
       case 'theme':
-        if (effect.mode === 'crt') {
-          const isCrt = shellEl?.classList.toggle('term--crt') ?? false;
-          write([{ text: `CRT phosphor scanlines: ${isCrt ? 'ON' : 'OFF'}`, tone: 'ok' }]);
-          scrollToEnd();
-        } else {
-          applyTheme(effect.mode);
-        }
+        applyTheme(effect.mode);
         break;
       case 'sound':
         if (effect.mode === 'bell') {
@@ -323,12 +317,14 @@ export function initTerminal(
   }
 
   
-  function applyTheme(mode: 'light' | 'dark' | 'nord' | 'monokai' | 'cyberdeck' | 'parchment' | 'toggle') {
-    const api = (window as unknown as { __pipoTheme?: pipoTheme }).__pipoTheme;
+  function applyTheme(mode: 'light' | 'dark' | 'toggle') {
+    const api = (window as unknown as { __fpTheme?: pipoTheme }).__fpTheme;
+
     if (!api) {
       write([{ text: 'theme: the theme switch is unavailable on this page.', tone: 'err' }]);
       return;
     }
+
     const next = mode === 'toggle' ? api.toggle() : api.set(mode);
     write([{ text: `theme → ${next}`, tone: 'ok' }]);
     scrollToEnd();
@@ -624,7 +620,7 @@ export function initTerminal(
 
   const onThemeClick = () => applyTheme('toggle');
   themeBtn?.addEventListener('click', onThemeClick);
-  document.addEventListener('pipo:theme-change', syncThemeButton);
+  document.addEventListener('fp:theme-change', syncThemeButton);
   syncThemeButton();
 
   const bootIndex = {
@@ -893,7 +889,7 @@ export function initTerminal(
       zoomBtn?.removeEventListener('click', toggleFullscreen);
       themeBtn?.removeEventListener('click', onThemeClick);
       document.removeEventListener('fullscreenchange', syncFullscreen);
-      document.removeEventListener('pipo:theme-change', syncThemeButton);
+      document.removeEventListener('fp:theme-change', syncThemeButton);
       delete (window as unknown as Record<string, unknown>).__terminal;
       shellEl.dataset.terminalReady = '';
     },

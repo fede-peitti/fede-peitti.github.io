@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import '../styles/retroCrt.css';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -19,8 +18,10 @@ interface Props {
   scholarMeta?: ScholarMeta;
   bare?: boolean;
 }
+
 const { title, description, image, type, noindex, scholarMeta, bare = false } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,17 +30,23 @@ const { title, description, image, type, noindex, scholarMeta, bare = false } = 
         const key = 'fp-theme';
         const root = document.documentElement;
         let theme = null;
+
         try {
           const saved = localStorage.getItem(key);
-          if (['light', 'dark', 'nord', 'monokai', 'cyberdeck', 'parchment'].includes(saved)) theme = saved;
+          if (saved === 'light' || saved === 'dark') theme = saved;
         } catch {}
+
         if (!theme) {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
         }
+
         root.dataset.theme = theme;
-        root.style.colorScheme = (theme === 'parchment' || theme === 'light') ? 'light' : 'dark';
+        root.style.colorScheme = theme;
       })();
     </script>
+
     <BaseHead
       title={title}
       description={description}
@@ -49,40 +56,32 @@ const { title, description, image, type, noindex, scholarMeta, bare = false } = 
     />
     <ClientRouter />
   </head>
+
   <body>
     <script is:inline>
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('reveal-ready');
       }
     </script>
+
     {!bare && <ReadingProgress />}
     {!bare && <PageScan />}
     {!bare && <CommandPalette />}
     {!bare && <a href="#main" class="skip-link">Skip to content</a>}
     {!bare && <Header />}
+
     <script is:inline>
       (() => {
         const themeKey = 'fp-theme';
-        const crtKey = 'fp-crt-mode';
         const colors = {
           light: '#fafaf8',
           dark: '#0f1413',
-          nord: '#242933',
-          monokai: '#1e1e24',
-          cyberdeck: '#070d14',
-          parchment: '#fbf5e6',
         };
+
         const getRoot = () => document.documentElement;
         const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-        const validTheme = (value) =>
-          value === 'light' ||
-          value === 'dark' ||
-          value === 'nord' ||
-          value === 'monokai' ||
-          value === 'cyberdeck' ||
-          value === 'parchment';
-        const validCrt = (value) => value === 'off' || value === 'amber' || value === 'green' || value === 'cyan';
+        const validTheme = (value) => value === 'light' || value === 'dark';
 
         const storedTheme = () => {
           try {
@@ -93,22 +92,14 @@ const { title, description, image, type, noindex, scholarMeta, bare = false } = 
           }
         };
 
-        const storedCrt = () => {
-          try {
-            const value = localStorage.getItem(crtKey);
-            return validCrt(value) ? value : null;
-          } catch {
-            return null;
-          }
-        };
-
         const systemTheme = () => (media.matches ? 'dark' : 'light');
         const resolvedTheme = () => storedTheme() || systemTheme();
-        const resolvedCrt = () => storedCrt() || 'off';
 
-        const syncControls = (theme, crt) => {
-          const isCrtActive = crt === 'amber' || crt === 'green' || crt === 'cyan';
-          const nextLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        const syncControls = (theme) => {
+          const nextLabel = theme === 'dark'
+            ? 'Switch to light mode'
+            : 'Switch to dark mode';
+
           for (const button of document.querySelectorAll('[data-theme-toggle]')) {
             button.dataset.themeState = theme;
             button.setAttribute('aria-label', nextLabel);
@@ -117,15 +108,7 @@ const { title, description, image, type, noindex, scholarMeta, bare = false } = 
           }
 
           document.querySelectorAll('[data-theme-choice]').forEach((btn) => {
-            const choice = btn.dataset.themeChoice;
-            const isActive = !isCrtActive && choice === theme;
-            btn.setAttribute('aria-checked', String(isActive));
-            btn.classList.toggle('is-active', isActive);
-          });
-
-          document.querySelectorAll('[data-crt-choice]').forEach((btn) => {
-            const choice = btn.dataset.crtChoice;
-            const isActive = isCrtActive && choice === crt;
+            const isActive = btn.dataset.themeChoice === theme;
             btn.setAttribute('aria-checked', String(isActive));
             btn.classList.toggle('is-active', isActive);
           });
@@ -136,57 +119,26 @@ const { title, description, image, type, noindex, scholarMeta, bare = false } = 
           if (meta) meta.setAttribute('content', colors[theme] || colors.light);
         };
 
-        const syncCrtOverlay = (crt) => {
-          let overlay = document.getElementById('crt-screen-overlay');
-          if (crt === 'amber' || crt === 'green' || crt === 'cyan') {
-            if (!overlay) {
-              overlay = document.createElement('div');
-              overlay.id = 'crt-screen-overlay';
-              document.body.appendChild(overlay);
-            }
-          } else {
-            if (overlay) {
-              overlay.remove();
-            }
-          }
-        };
-
         const applyTheme = (theme, persist = false) => {
           const next = validTheme(theme) ? theme : systemTheme();
           const root = getRoot();
+
           if (persist) {
             try {
               localStorage.setItem(themeKey, next);
-              localStorage.removeItem(crtKey);
             } catch {}
           }
-          root.dataset.theme = next;
-          root.style.colorScheme = (next === 'parchment' || next === 'light') ? 'light' : 'dark';
-          delete root.dataset.crtMode;
-          syncCrtOverlay('off');
-          syncMeta(next);
-          syncControls(next, 'off');
-          document.dispatchEvent(new CustomEvent('fp:theme-change', { detail: { theme: next } }));
-          document.dispatchEvent(new CustomEvent('fp:crt-change', { detail: { mode: 'off' } }));
-          return next;
-        };
 
-        const applyCrt = (mode, persist = false) => {
-          const next = validCrt(mode) ? mode : 'off';
-          const root = getRoot();
-          if (persist) {
-            try {
-              localStorage.setItem(crtKey, next);
-            } catch {}
-          }
-          if (next === 'amber' || next === 'green' || next === 'cyan') {
-            root.dataset.crtMode = next;
-          } else {
-            delete root.dataset.crtMode;
-          }
-          syncCrtOverlay(next);
-          syncControls(root.dataset.theme || resolvedTheme(), next);
-          document.dispatchEvent(new CustomEvent('fp:crt-change', { detail: { mode: next } }));
+          root.dataset.theme = next;
+          root.style.colorScheme = next;
+
+          syncMeta(next);
+          syncControls(next);
+
+          document.dispatchEvent(
+            new CustomEvent('fp:theme-change', { detail: { theme: next } })
+          );
+
           return next;
         };
 
@@ -195,21 +147,11 @@ const { title, description, image, type, noindex, scholarMeta, bare = false } = 
             get: () => getRoot().dataset.theme || resolvedTheme(),
             apply: (theme) => applyTheme(theme, false),
             set: (theme) => applyTheme(theme, true),
-            toggle: () => applyTheme((getRoot().dataset.theme || resolvedTheme()) === 'dark' ? 'light' : 'dark', true),
-            sync: () => applyTheme(resolvedTheme(), false),
-          };
-
-          window.__fpCrt = {
-            get: () => getRoot().dataset.crtMode || resolvedCrt(),
-            apply: (mode) => applyCrt(mode, false),
-            set: (mode) => applyCrt(mode, true),
-            toggle: () => applyCrt((getRoot().dataset.crtMode || resolvedCrt()) === 'off' ? 'amber' : 'off', true),
-            cycle: () => {
-              const current = getRoot().dataset.crtMode || resolvedCrt();
-              const next = current === 'off' ? 'amber' : current === 'amber' ? 'green' : current === 'green' ? 'cyan' : 'off';
-              return applyCrt(next, true);
+            toggle: () => {
+              const current = getRoot().dataset.theme || resolvedTheme();
+              return applyTheme(current === 'dark' ? 'light' : 'dark', true);
             },
-            sync: () => applyCrt(resolvedCrt(), false),
+            sync: () => applyTheme(resolvedTheme(), false),
           };
 
           media.addEventListener('change', () => {
@@ -218,55 +160,60 @@ const { title, description, image, type, noindex, scholarMeta, bare = false } = 
 
           document.addEventListener('astro:before-swap', (event) => {
             const theme = getRoot().dataset.theme || resolvedTheme();
-            const crt = getRoot().dataset.crtMode || resolvedCrt();
             const nextDocument = event.newDocument;
+
             if (!nextDocument) return;
+
             nextDocument.documentElement.dataset.theme = theme;
-            nextDocument.documentElement.style.colorScheme = (theme === 'parchment' || theme === 'light') ? 'light' : 'dark';
-            if (crt === 'amber' || crt === 'green' || crt === 'cyan') {
-              nextDocument.documentElement.dataset.crtMode = crt;
-            } else {
-              delete nextDocument.documentElement.dataset.crtMode;
-            }
+            nextDocument.documentElement.style.colorScheme = theme;
             syncMeta(theme, nextDocument);
           });
 
           document.addEventListener('astro:page-load', () => {
             window.__fpTheme.sync();
-            window.__fpCrt.sync();
           });
         }
 
         window.__fpTheme.sync();
-        window.__fpCrt.sync();
       })();
     </script>
+
     <main id="main" class:list={[bare && 'main--bare']}>
       <slot />
     </main>
+
     {!bare && <Footer />}
+
     <script>
       import { prefersReducedMotion, onVisible } from '../scripts/motion';
+
       let stoppers: Array<() => void> = [];
+
       function reveal() {
         if (prefersReducedMotion()) return;
+
         const observe = (selector: string, cls: string) => {
           for (const el of document.querySelectorAll(selector)) {
             let stop = () => {};
+
             stop = onVisible(el, () => {
               el.classList.add(cls);
               stop();
             });
+
             stoppers.push(stop);
           }
         };
+
         observe('[data-reveal]', 'is-visible');
         observe('[data-pulse]', 'is-pulsed');
       }
+
       function teardown() {
         for (const stop of stoppers) stop();
         stoppers = [];
       }
+
       document.addEventListener('astro:page-load', reveal);
       document.addEventListener('astro:before-swap', teardown);
     </script>

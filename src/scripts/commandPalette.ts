@@ -1,5 +1,4 @@
 import { startZeroGravity } from './domPhysics';
-import { startCrtMode, stopCrtMode } from './retroCrt';
 
 export interface CommandItem {
   id: string;
@@ -31,9 +30,9 @@ const STATIC_ACTIONS: CommandItem[] = [
     action: () => {
       if (
         typeof window !== 'undefined' &&
-        (window as unknown as { __pipoTheme?: { toggle: () => void } }).__pipoTheme
+        (window as unknown as { __fpTheme?: { toggle: () => void } }).__fpTheme
       ) {
-        (window as unknown as { __pipoTheme: { toggle: () => void } }).__pipoTheme.toggle();
+        (window as unknown as { __fpTheme: { toggle: () => void } }).__fpTheme.toggle();
       }
     },
     keywords: ['dark', 'light', 'mode', 'theme', 'color', 'toggle', 'base theme'],
@@ -47,9 +46,9 @@ const STATIC_ACTIONS: CommandItem[] = [
     action: () => {
       if (
         typeof window !== 'undefined' &&
-        (window as unknown as { __pipoTheme?: { set: (t: string) => void } }).__pipoTheme
+        (window as unknown as { __fpTheme?: { set: (t: string) => void } }).__fpTheme
       ) {
-        (window as unknown as { __pipoTheme: { set: (t: string) => void } }).__pipoTheme.set('light');
+        (window as unknown as { __fpTheme: { set: (t: string) => void } }).__fpTheme.set('light');
       }
     },
     keywords: ['light', 'day', 'paper', 'bright', 'white', 'theme'],
@@ -63,136 +62,12 @@ const STATIC_ACTIONS: CommandItem[] = [
     action: () => {
       if (
         typeof window !== 'undefined' &&
-        (window as unknown as { __pipoTheme?: { set: (t: string) => void } }).__pipoTheme
+        (window as unknown as { __fpTheme?: { set: (t: string) => void } }).__fpTheme
       ) {
-        (window as unknown as { __pipoTheme: { set: (t: string) => void } }).__pipoTheme.set('dark');
+        (window as unknown as { __fpTheme: { set: (t: string) => void } }).__fpTheme.set('dark');
       }
     },
     keywords: ['dark', 'night', 'black', 'slate', 'dim', 'theme'],
-  },
-  {
-    id: 'act-theme-parchment',
-    category: 'Actions',
-    title: 'Set Theme: 📜 Bell Labs 1970s Parchment',
-    subtitle: 'Warm aged paper with walnut sepia ink and burnt terracotta',
-    badge: 'Theme',
-    action: () => {
-      if (
-        typeof window !== 'undefined' &&
-        (window as unknown as { __pipoTheme?: { set: (t: string) => void } }).__pipoTheme
-      ) {
-        (window as unknown as { __pipoTheme: { set: (t: string) => void } }).__pipoTheme.set(
-          'parchment'
-        );
-      }
-    },
-    keywords: ['parchment', 'bell labs', 'sepia', 'paper', 'knuth', 'tex', 'smalltalk', 'theme'],
-  },
-  {
-    id: 'act-theme-nord',
-    category: 'Actions',
-    title: 'Set Theme: 🌌 Arctic Nord Computational',
-    subtitle: 'Polar night dark mode with arctic ice cyan accents',
-    badge: 'Theme',
-    action: () => {
-      if (
-        typeof window !== 'undefined' &&
-        (window as unknown as { __pipoTheme?: { set: (t: string) => void } }).__pipoTheme
-      ) {
-        (window as unknown as { __pipoTheme: { set: (t: string) => void } }).__pipoTheme.set('nord');
-      }
-    },
-    keywords: ['nord', 'arctic', 'developer', 'polar', 'ice', 'ide', 'theme'],
-  },
-  {
-    id: 'act-theme-monokai',
-    category: 'Actions',
-    title: 'Set Theme: 🕹️ Monokai Pro Compiler',
-    subtitle: 'Warm charcoal editor theme with compiler gold and syntax rose',
-    badge: 'Theme',
-    action: () => {
-      if (
-        typeof window !== 'undefined' &&
-        (window as unknown as { __pipoTheme?: { set: (t: string) => void } }).__pipoTheme
-      ) {
-        (window as unknown as { __pipoTheme: { set: (t: string) => void } }).__pipoTheme.set(
-          'monokai'
-        );
-      }
-    },
-    keywords: ['monokai', 'compiler', 'gold', 'code', 'editor', 'theme'],
-  },
-  {
-    id: 'act-theme-cyberdeck',
-    category: 'Actions',
-    title: 'Set Theme: 📟 DEC VT220 / Cyberdeck',
-    subtitle: 'Obsidian navy with electric ice cyan phosphor glow',
-    badge: 'Theme',
-    action: () => {
-      if (
-        typeof window !== 'undefined' &&
-        (window as unknown as { __pipoTheme?: { set: (t: string) => void } }).__pipoTheme
-      ) {
-        (window as unknown as { __pipoTheme: { set: (t: string) => void } }).__pipoTheme.set(
-          'cyberdeck'
-        );
-      }
-    },
-    keywords: ['cyberdeck', 'cyan', 'vt220', 'dec', 'matrix', 'terminal', 'theme'],
-  },
-  {
-    id: 'act-crt-amber',
-    category: 'Actions',
-    title: '📺 1988 CRT Monitor: ⚡ Amber Phosphor',
-    subtitle: 'Vintage NIH Alpha VAX Amber CRT display with scanlines',
-    badge: 'Display',
-    action: () => {
-      startCrtMode('amber');
-    },
-    keywords: ['crt', 'retro', '1988', 'amber', 'phosphor', 'terminal', 'scanlines', 'display'],
-  },
-  {
-    id: 'act-crt-green',
-    category: 'Actions',
-    title: '📺 1988 CRT Monitor: 🟢 Green Phosphor',
-    subtitle: 'Classic 1988 Supercomputer Green CRT display with scanlines',
-    badge: 'Display',
-    action: () => {
-      startCrtMode('green');
-    },
-    keywords: ['crt', 'retro', '1988', 'green', 'phosphor', 'terminal', 'scanlines', 'display'],
-  },
-  {
-    id: 'act-crt-cyan',
-    category: 'Actions',
-    title: '📺 1988 CRT Monitor: 🔷 Cyan Phosphor',
-    subtitle: 'Vintage DEC VT220 Vector Cyan CRT display with scanlines',
-    badge: 'Display',
-    action: () => {
-      startCrtMode('cyan');
-    },
-    keywords: [
-      'crt',
-      'retro',
-      '1988',
-      'cyan',
-      'vt220',
-      'phosphor',
-      'terminal',
-      'scanlines',
-      'display',
-    ],
-  },
-  {
-    id: 'act-crt-off',
-    category: 'Actions',
-    title: '🖥️ Modern Display Mode (CRT Off)',
-    subtitle: 'Disable CRT scanlines and return to modern display',
-    badge: 'Display',
-    action: () => {
-      stopCrtMode();
-    },
-    keywords: ['crt off', 'modern', 'disable crt', 'normal display', 'turn off crt'],
   },
   {
     id: 'act-terminal',

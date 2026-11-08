@@ -57,28 +57,28 @@ const posts = allPosts
 <BaseLayout type="profile">
   <Hero />
 
-  <section class="section home-section container" data-reveal>
-    <SectionHeading eyebrow="What I work on" title="Research" href="/research/" more="All research" />
-    <div class="home-research">
-      {research.map((entry) => <ResearchCard entry={entry} variant="home" />)}
-    </div>
-  </section>
+  {research.length > 1 && (
+    <section class="section home-section container" data-reveal>
+      <SectionHeading eyebrow="What I work on" title="Research" href="/research/" more="All research" />
+      <div class="home-research">
+        {research.map((entry) => <ResearchCard entry={entry} variant="home" />)}
+      </div>
+    </section>
+  )}=
 
-  <section class="section home-section container" data-reveal>
-    <HomeTerminal />
-  </section>
-
-  <section class="section home-section container" data-reveal>
-    <SectionHeading
-      eyebrow="Selected work"
-      title="Publications"
-      href="/publications/"
-      more="All publications"
-    />
-    <ol class="home-pubs">
-      {pubs.map((pub) => <li><PublicationItem pub={pub} compact /></li>)}
-    </ol>
-  </section>
+  {pubs.length > 0 && (
+    <section class="section home-section container" data-reveal>
+      <SectionHeading
+        eyebrow="Selected work"
+        title="Publications"
+        href="/publications/"
+        more="All publications"
+      />
+      <ol class="home-pubs">
+        {pubs.map((pub) => <li><PublicationItem pub={pub} compact /></li>)}
+      </ol>
+    </section>
+  )}
 
   {featuredTools.length > 0 && (
     <section class="section home-section container" data-reveal>
@@ -156,16 +156,18 @@ const posts = allPosts
     </section>
   )}
 
-  <section class="section home-section container" data-reveal>
-    <SectionHeading eyebrow="Updates" title="Recent news" href="/news/" more="All news" />
-    <div class="home-news">
-      {news.map(({ entry, Content }) => (
-        <NewsEntry entry={entry} variant="card">
-          <Content />
-        </NewsEntry>
-      ))}
-    </div>
-  </section>
+  {news.length > 1 && (
+    <section class="section home-section container" data-reveal>
+      <SectionHeading eyebrow="Updates" title="Recent news" href="/news/" more="All news" />
+      <div class="home-news">
+        {news.map(({ entry, Content }) => (
+          <NewsEntry entry={entry} variant="card">
+            <Content />
+          </NewsEntry>
+        ))}
+      </div>
+    </section>
+  )}
 
   <div class="home-seq"><SequenceTrack /></div>
 
@@ -173,7 +175,7 @@ const posts = allPosts
     <div class="container cta-inner">
       <h2 class="cta-title">Let's work together</h2>
       <p class="cta-text">
-        I am always open to collaborate on interesting projects: feel free to reach out!
+        I am always open to collaborate on projects: feel free to reach out!
       </p>
       <div class="cta-actions">
         <a class="btn" href={`mailto:${site.email}`}>

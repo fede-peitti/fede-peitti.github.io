@@ -61,25 +61,7 @@ const headerNav = nav.filter((item) => !item.footerOnly);
             <span class="theme-toggle-icon theme-toggle-icon--dark" aria-hidden="true">
               <Icon name="moon" size={19} />
             </span>
-            <span class="theme-toggle-icon theme-toggle-icon--parchment" aria-hidden="true">
-              <Icon name="parchment" size={19} />
-            </span>
-            <span class="theme-toggle-icon theme-toggle-icon--nord" aria-hidden="true">
-              <Icon name="nord" size={19} />
-            </span>
-            <span class="theme-toggle-icon theme-toggle-icon--monokai" aria-hidden="true">
-              <Icon name="monokai" size={19} />
-            </span>
-            <span class="theme-toggle-icon theme-toggle-icon--cyberdeck" aria-hidden="true">
-              <Icon name="cyberdeck" size={19} />
-            </span>
-            <span
-              class="theme-toggle-icon theme-toggle-icon--crt"
-              data-top-crt-badge
-              aria-hidden="true"
-            >
-              ⚡
-            </span>
+          
           </span>
           <span class="top-theme-caret" aria-hidden="true">▾</span>
         </button>
@@ -87,7 +69,7 @@ const headerNav = nav.filter((item) => !item.footerOnly);
         <div class="top-theme-popover" data-top-theme-popover role="menu" hidden>
 
           <div class="popover-section">
-            <span class="popover-heading">Modern Themes</span>
+            <span class="popover-heading">Themes</span>
             <div class="popover-grid">
               <button
                 type="button"
@@ -111,99 +93,7 @@ const headerNav = nav.filter((item) => !item.footerOnly);
                 </span>
                 <span class="opt-text">Dark</span>
               </button>
-              <button
-                type="button"
-                class="popover-opt-btn"
-                data-theme-choice="parchment"
-                role="menuitem"
-              >
-                <span class="opt-icon-wrap" aria-hidden="true">
-                  <Icon name="parchment" size={14} />
-                </span>
-                <span class="opt-text">Parchment</span>
-              </button>
-              <button
-                type="button"
-                class="popover-opt-btn"
-                data-theme-choice="nord"
-                role="menuitem"
-              >
-                <span class="opt-icon-wrap" aria-hidden="true">
-                  <Icon name="nord" size={14} />
-                </span>
-                <span class="opt-text">Nord</span>
-              </button>
-              <button
-                type="button"
-                class="popover-opt-btn"
-                data-theme-choice="monokai"
-                role="menuitem"
-              >
-                <span class="opt-icon-wrap" aria-hidden="true">
-                  <Icon name="monokai" size={14} />
-                </span>
-                <span class="opt-text">Monokai</span>
-              </button>
-              <button
-                type="button"
-                class="popover-opt-btn"
-                data-theme-choice="cyberdeck"
-                role="menuitem"
-              >
-                <span class="opt-icon-wrap" aria-hidden="true">
-                  <Icon name="cyberdeck" size={14} />
-                </span>
-                <span class="opt-text">Cyberdeck</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="popover-section popover-section--crt">
-            <div class="popover-heading-row">
-              <span class="popover-heading" id="crt-heading">1988 CRT</span>
-              <button
-                type="button"
-                class="crt-switch"
-                data-crt-switch
-                role="switch"
-                aria-checked="false"
-                aria-labelledby="crt-heading"
-              >
-                <span class="crt-switch-track" aria-hidden="true"><span class="crt-switch-thumb"></span></span>
-                <span class="crt-switch-text" data-crt-switch-text>Off</span>
-              </button>
-            </div>
-            <div class="popover-crt-row" role="radiogroup" aria-labelledby="crt-heading" data-crt-colors>
-              <button
-                type="button"
-                class="popover-crt-btn popover-crt-btn--amber"
-                data-crt-choice="amber"
-                role="radio"
-                aria-checked="false"
-              >
-                <span class="crt-swatch" aria-hidden="true"></span>
-                <span>Amber</span>
-              </button>
-              <button
-                type="button"
-                class="popover-crt-btn popover-crt-btn--green"
-                data-crt-choice="green"
-                role="radio"
-                aria-checked="false"
-              >
-                <span class="crt-swatch" aria-hidden="true"></span>
-                <span>Green</span>
-              </button>
-              <button
-                type="button"
-                class="popover-crt-btn popover-crt-btn--cyan"
-                data-crt-choice="cyan"
-                role="radio"
-                aria-checked="false"
-              >
-                <span class="crt-swatch" aria-hidden="true"></span>
-                <span>Cyan</span>
-              </button>
+              
             </div>
           </div>
 
@@ -418,60 +308,18 @@ const headerNav = nav.filter((item) => !item.footerOnly);
       transform var(--transition);
   }
 
-  .theme-toggle-icon--crt {
-    font-size: 1rem;
-    line-height: 1;
-  }
-
-  /* Each theme displays its own dedicated bespoke icon */
   .top-theme-btn[data-theme-state='light'] .theme-toggle-icon--light,
-  .top-theme-btn[data-theme-state='dark'] .theme-toggle-icon--dark,
-  .top-theme-btn[data-theme-state='parchment'] .theme-toggle-icon--parchment,
-  .top-theme-btn[data-theme-state='nord'] .theme-toggle-icon--nord,
-  .top-theme-btn[data-theme-state='monokai'] .theme-toggle-icon--monokai,
-  .top-theme-btn[data-theme-state='cyberdeck'] .theme-toggle-icon--cyberdeck {
+  .top-theme-btn[data-theme-state='dark'] .theme-toggle-icon--dark {
     opacity: 1;
-    transform: none;
+    transform: scale(1);
   }
 
-  /* Individual active icon colors for each theme */
   .theme-toggle-icon--light {
-    color: #f59e0b;
+    color: #f0a868;
   }
 
   .theme-toggle-icon--dark {
-    color: #75c7af;
-  }
-
-  .theme-toggle-icon--parchment {
-    color: #c2410c;
-  }
-
-  .theme-toggle-icon--nord {
-    color: #88c0d0;
-  }
-
-  .theme-toggle-icon--monokai {
-    color: #ffd866;
-  }
-
-  .theme-toggle-icon--cyberdeck {
-    color: #22d3ee;
-  }
-
-  .top-theme-btn[data-crt-active='true'] .theme-toggle-icon--light,
-  .top-theme-btn[data-crt-active='true'] .theme-toggle-icon--dark,
-  .top-theme-btn[data-crt-active='true'] .theme-toggle-icon--parchment,
-  .top-theme-btn[data-crt-active='true'] .theme-toggle-icon--nord,
-  .top-theme-btn[data-crt-active='true'] .theme-toggle-icon--monokai,
-  .top-theme-btn[data-crt-active='true'] .theme-toggle-icon--cyberdeck {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-
-  .top-theme-btn[data-crt-active='true'] .theme-toggle-icon--crt {
-    opacity: 1;
-    transform: none;
+    color: #97efe9;
   }
 
   .top-theme-caret {
@@ -594,177 +442,11 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     color: #75c7af;
   }
 
-  .popover-opt-btn[data-theme-choice='parchment'] .opt-icon-wrap,
-  .mobile-theme-btn[data-theme-choice='parchment'] .opt-icon-wrap {
-    color: #c2410c;
-  }
-
-  .popover-opt-btn[data-theme-choice='nord'] .opt-icon-wrap,
-  .mobile-theme-btn[data-theme-choice='nord'] .opt-icon-wrap {
-    color: #88c0d0;
-  }
-
-  .popover-opt-btn[data-theme-choice='monokai'] .opt-icon-wrap,
-  .mobile-theme-btn[data-theme-choice='monokai'] .opt-icon-wrap {
-    color: #ffd866;
-  }
-
-  .popover-opt-btn[data-theme-choice='cyberdeck'] .opt-icon-wrap,
-  .mobile-theme-btn[data-theme-choice='cyberdeck'] .opt-icon-wrap {
-    color: #22d3ee;
-  }
-
-  .popover-crt-row {
-    display: flex;
-    gap: 0.35rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .popover-crt-btn {
-    flex: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    padding: 0.45rem 0.35rem;
-    border: 1px solid var(--color-rule);
-    border-radius: 6px;
-    background: transparent;
-    color: var(--color-muted);
-    font-family: inherit;
-    font-size: 0.78125rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.12s ease;
-    box-sizing: border-box;
-  }
-
-  .popover-crt-btn:hover {
-    color: var(--color-ink);
-    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
-  }
-
-  .popover-crt-btn--amber.is-active {
-    color: #ffb000 !important;
-    border-color: #ffb000 !important;
-    background: rgba(255, 176, 0, 0.12) !important;
-    font-weight: 600;
-  }
-
-  .popover-crt-btn--green.is-active {
-    color: #33ff33 !important;
-    border-color: #33ff33 !important;
-    background: rgba(51, 255, 51, 0.12) !important;
-    font-weight: 600;
-  }
-
-  .popover-crt-btn--cyan.is-active {
-    color: #38fdf8 !important;
-    border-color: #38fdf8 !important;
-    background: rgba(56, 253, 248, 0.12) !important;
-    font-weight: 600;
-  }
-
   .popover-heading-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-  }
-
-  .crt-switch {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.15rem 0.25rem;
-    border: 0;
-    background: none;
-    cursor: pointer;
-    color: var(--color-muted);
-    font-size: var(--fs-meta);
-    font-family: inherit;
-  }
-  .crt-switch-track {
-    width: 1.85rem;
-    height: 1rem;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--color-ink) 18%, transparent);
-    padding: 2px;
-    display: inline-flex;
-    transition: background var(--transition);
-  }
-  .crt-switch-thumb {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    background: var(--color-surface);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    transition: transform var(--transition);
-  }
-  .crt-switch.is-on {
-    color: var(--color-ink);
-  }
-  .crt-switch.is-on .crt-switch-track {
-    background: var(--color-accent);
-  }
-  .crt-switch.is-on .crt-switch-thumb {
-    transform: translateX(0.85rem);
-  }
-  .crt-switch:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-    border-radius: var(--radius);
-  }
-
-  .crt-swatch {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    flex: none;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
-  }
-  .popover-crt-btn--amber .crt-swatch { background: #ffb000; }
-  .popover-crt-btn--green .crt-swatch { background: #33ff66; }
-  .popover-crt-btn--cyan .crt-swatch { background: #38d9ff; }
-
-  .popover-crt-row.is-disabled {
-    opacity: 0.42;
-  }
-  .popover-crt-btn:disabled {
-    cursor: not-allowed;
-  }
-
-  .theme-swatch-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: inline-block;
-  }
-  .theme-swatch-dot--light {
-    background: #2e6e5e;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-  }
-  .theme-swatch-dot--parchment {
-    background: #c2410c;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-  }
-  .theme-swatch-dot--dark {
-    background: #75c7af;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-  }
-  .theme-swatch-dot--nord {
-    background: #88c0d0;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-  }
-  .theme-swatch-dot--monokai {
-    background: #ffd866;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-  }
-  .theme-swatch-dot--cyberdeck {
-    background: #22d3ee;
-    border: 1px solid rgba(255, 255, 255, 0.25);
   }
 
   .opt-text {
@@ -797,81 +479,9 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     color: var(--color-accent);
   }
 
-  .mobile-theme-drawer {
-    padding: 1rem var(--gutter) 1.5rem;
-    border-top: 1px solid var(--color-rule);
-    background: color-mix(in srgb, var(--color-surface) 60%, transparent);
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-  }
-
   .mobile-drawer-heading {
     margin: 0;
   }
-
-  .mobile-theme-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.35rem;
-  }
-
-  .mobile-theme-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-
-  .mobile-theme-btn {
-    flex: 1;
-    min-width: 60px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    padding: 0.55rem 0.35rem;
-    min-height: 40px;
-    border: 1px solid var(--color-rule);
-    border-radius: 8px;
-    background: var(--color-surface);
-    color: var(--color-muted);
-    font-family: inherit;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-
-  .mobile-theme-btn:hover {
-    color: var(--color-ink);
-  }
-
-  .mobile-theme-btn.is-active {
-    color: var(--color-ink);
-    border-color: var(--color-accent);
-    font-weight: 600;
-    background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  }
-
-  .mobile-theme-btn--amber.is-active {
-    color: #ffb000 !important;
-    border-color: #ffb000 !important;
-    background: rgba(255, 176, 0, 0.15) !important;
-  }
-
-  .mobile-theme-btn--green.is-active {
-    color: #33ff33 !important;
-    border-color: #33ff33 !important;
-    background: rgba(51, 255, 51, 0.15) !important;
-  }
-
-  .mobile-theme-btn--cyan.is-active {
-    color: #38fdf8 !important;
-    border-color: #38fdf8 !important;
-    background: rgba(56, 253, 248, 0.15) !important;
-  }
-
   @media (max-width: 960px) {
     .nav-desktop {
       display: none;
@@ -920,29 +530,27 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     toggle: () => void;
     sync: () => void;
   }
-  interface CrtApi {
-    get: () => string;
-    set: (m: string) => void;
-    toggle: () => void;
-    sync: () => void;
-  }
 
-  const themeApi = () => (window as Window & { __pipoTheme?: ThemeApi }).__pipoTheme;
-  const crtApi = () => (window as Window & { __pipoCrt?: CrtApi }).__pipoCrt;
+  const themeApi = () =>
+    (window as Window & { __fpTheme?: ThemeApi }).__fpTheme;
 
   interface Nav {
     toggle: HTMLButtonElement;
     menu: HTMLElement;
     header: HTMLElement;
   }
+
   let nav: Nav | null = null;
   let popoverEl: HTMLElement | null = null;
   let topBtnEl: HTMLButtonElement | null = null;
+
   const headerWindow = window as Window & {
-    __pipoHeaderEventsBound?: boolean;
+    __fpHeaderEventsBound?: boolean;
   };
 
-  const isMenuOpen = () => nav?.toggle.getAttribute('aria-expanded') === 'true';
+  const isMenuOpen = () =>
+    nav?.toggle.getAttribute('aria-expanded') === 'true';
+
   const setMenuOpen = (open: boolean) => {
     if (!nav) return;
     nav.toggle.setAttribute('aria-expanded', String(open));
@@ -950,7 +558,9 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     nav.menu.hidden = !open;
   };
 
-  const isPopoverOpen = () => topBtnEl?.getAttribute('aria-expanded') === 'true';
+  const isPopoverOpen = () =>
+    topBtnEl?.getAttribute('aria-expanded') === 'true';
+
   const setPopoverOpen = (open: boolean) => {
     if (!popoverEl || !topBtnEl) return;
     popoverEl.hidden = !open;
@@ -958,68 +568,50 @@ const headerNav = nav.filter((item) => !item.footerOnly);
   };
 
   function syncHeaderThemeIcons() {
-    const currentTheme = themeApi()?.get() || document.documentElement.dataset.theme || 'light';
-    const currentCrt = crtApi()?.get() || document.documentElement.dataset.crtMode || 'off';
-    const isCrt = currentCrt === 'amber' || currentCrt === 'green' || currentCrt === 'cyan';
+    const currentTheme =
+      themeApi()?.get() ||
+      document.documentElement.dataset.theme ||
+      'light';
 
-    const topBtn = document.querySelector<HTMLButtonElement>('[data-top-theme-btn]');
-    const crtBadge = document.querySelector<HTMLElement>('[data-top-crt-badge]');
+    const topBtn = document.querySelector<HTMLButtonElement>(
+      '[data-top-theme-btn]'
+    );
+
     if (topBtn) {
       topBtn.dataset.themeState = currentTheme;
-      topBtn.dataset.crtActive = String(isCrt);
-      if (crtBadge) {
-        crtBadge.textContent =
-          currentCrt === 'amber'
-            ? '⚡'
-            : currentCrt === 'green'
-              ? '🟢'
-              : currentCrt === 'cyan'
-                ? '🔷'
-                : '';
-      }
     }
 
-    document.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach((btn) => {
-      const choice = btn.dataset.themeChoice;
-      const isActive = !isCrt && choice === currentTheme;
+    document.querySelectorAll<HTMLButtonElement>(
+      '[data-theme-choice]'
+    ).forEach((btn) => {
+      const isActive = btn.dataset.themeChoice === currentTheme;
       btn.classList.toggle('is-active', isActive);
       btn.setAttribute('aria-checked', String(isActive));
-    });
-
-    document.querySelectorAll<HTMLButtonElement>('[data-crt-choice]').forEach((btn) => {
-      const choice = btn.dataset.crtChoice;
-      const isActive = isCrt && choice === currentCrt;
-      btn.classList.toggle('is-active', isActive);
-      btn.setAttribute('aria-checked', String(isActive));
-      btn.disabled = !isCrt;
-    });
-    document.querySelectorAll<HTMLButtonElement>('[data-crt-switch]').forEach((btn) => {
-      btn.setAttribute('aria-checked', String(isCrt));
-      btn.classList.toggle('is-on', isCrt);
-      const label = btn.querySelector('[data-crt-switch-text]');
-      if (label) label.textContent = isCrt ? 'On' : 'Off';
-    });
-    document.querySelectorAll<HTMLElement>('[data-crt-colors]').forEach((row) => {
-      row.classList.toggle('is-disabled', !isCrt);
     });
   }
-
-
 
   function bind() {
     const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
     const menu = document.querySelector<HTMLElement>('#mobile-menu');
     const header = document.querySelector<HTMLElement>('.site-header');
+
     if (toggle && menu && header) {
       nav = { toggle, menu, header };
+
       if (toggle.dataset.navBound !== 'true') {
         toggle.dataset.navBound = 'true';
-        toggle.addEventListener('click', () => setMenuOpen(!isMenuOpen()));
+        toggle.addEventListener('click', () =>
+          setMenuOpen(!isMenuOpen())
+        );
       }
     }
 
-    topBtnEl = document.querySelector<HTMLButtonElement>('[data-top-theme-btn]');
-    popoverEl = document.querySelector<HTMLElement>('[data-top-theme-popover]');
+    topBtnEl = document.querySelector<HTMLButtonElement>(
+      '[data-top-theme-btn]'
+    );
+    popoverEl = document.querySelector<HTMLElement>(
+      '[data-top-theme-popover]'
+    );
 
     if (topBtnEl && topBtnEl.dataset.popoverBound !== 'true') {
       topBtnEl.dataset.popoverBound = 'true';
@@ -1029,39 +621,22 @@ const headerNav = nav.filter((item) => !item.footerOnly);
       });
     }
 
-    // Bind choice clicks across top popover and mobile drawer
-    document.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach((btn) => {
+    document.querySelectorAll<HTMLButtonElement>(
+      '[data-theme-choice]'
+    ).forEach((btn) => {
       btn.onclick = (e) => {
         e.stopPropagation();
         const choice = btn.dataset.themeChoice;
-        if (choice) {
-          themeApi()?.set(choice);
-          setPopoverOpen(false);
-        }
-      };
-    });
 
-    document.querySelectorAll<HTMLButtonElement>('[data-crt-choice]').forEach((btn) => {
-      btn.onclick = (e) => {
-        e.stopPropagation();
-        const choice = btn.dataset.crtChoice;
-        if (choice) {
-          crtApi()?.set(choice);
+        if (choice === 'light' || choice === 'dark') {
+          themeApi()?.set(choice);
           syncHeaderThemeIcons();
           setPopoverOpen(false);
         }
       };
     });
 
-    document.querySelectorAll<HTMLButtonElement>('[data-crt-switch]').forEach((btn) => {
-      btn.onclick = (event) => {
-        event.stopPropagation();
-        crtApi()?.toggle();
-        syncHeaderThemeIcons();
-      };
-    });
-
-
+    syncHeaderThemeIcons();
   }
 
   function handleHeaderKeydown(e: KeyboardEvent) {
@@ -1070,6 +645,7 @@ const headerNav = nav.filter((item) => !item.footerOnly);
         setPopoverOpen(false);
         topBtnEl?.focus();
       }
+
       if (isMenuOpen()) {
         setMenuOpen(false);
         nav?.toggle.focus();
@@ -1079,9 +655,15 @@ const headerNav = nav.filter((item) => !item.footerOnly);
 
   function handleOutsideClick(e: MouseEvent) {
     const target = e.target as Node;
-    if (isPopoverOpen() && !popoverEl?.contains(target) && !topBtnEl?.contains(target)) {
+
+    if (
+      isPopoverOpen() &&
+      !popoverEl?.contains(target) &&
+      !topBtnEl?.contains(target)
+    ) {
       setPopoverOpen(false);
     }
+
     if (isMenuOpen() && !nav?.header.contains(target)) {
       setMenuOpen(false);
     }
@@ -1098,13 +680,18 @@ const headerNav = nav.filter((item) => !item.footerOnly);
 
   function updateActiveNav() {
     const currentPath = location.pathname;
+
     for (const a of document.querySelectorAll<HTMLAnchorElement>(
       '.nav-desktop a, .mobile-menu a'
     )) {
       const href = a.getAttribute('href') || '';
       if (!href.startsWith('/')) continue;
+
       const active =
-        href === '/' ? currentPath === '/' : currentPath.startsWith(href.replace(/\/$/, ''));
+        href === '/'
+          ? currentPath === '/'
+          : currentPath.startsWith(href.replace(/\/$/, ''));
+
       if (active) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     }
@@ -1115,14 +702,18 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     updateActiveNav();
   }
 
-  if (!headerWindow.__pipoHeaderEventsBound) {
-    headerWindow.__pipoHeaderEventsBound = true;
+  if (!headerWindow.__fpHeaderEventsBound) {
+    headerWindow.__fpHeaderEventsBound = true;
+
     document.addEventListener('keydown', handleHeaderKeydown);
     document.addEventListener('click', handleOutsideClick);
-    window.matchMedia('(min-width: 960px)').addEventListener('change', handleDesktopLayout);
+
+    window
+      .matchMedia('(min-width: 960px)')
+      .addEventListener('change', handleDesktopLayout);
+
     document.addEventListener('astro:before-swap', closeHeaderMenus);
-    document.addEventListener('pipo:theme-change', syncHeaderThemeIcons);
-    document.addEventListener('pipo:crt-change', syncHeaderThemeIcons);
+    document.addEventListener('fp:theme-change', syncHeaderThemeIcons);
     document.addEventListener('astro:page-load', handleHeaderPageLoad);
   }
 

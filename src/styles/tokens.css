@@ -1,27 +1,31 @@
+
 :root,
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --color-bg: #fafaf8;          
-  --color-surface: #ffffff;    
-  --color-figure-mat: transparent; 
-  --color-ink: #141414;       
-  --color-accent: #2e6e5e;     
-  --color-accent-dark: #245546; 
-  --color-muted: #6b6b6b;      
-  --color-rule: #e5e4df;
+  --color-bg: #ffffff;
+  --color-surface: #e4ffee;
+  --color-figure-mat: transparent;
+  --color-ink: #202820;
+  --color-accent: #6a8d73;
+  --color-accent-dark: #506f58;
+  --color-muted: #68756a;
+  --color-rule: #d5e5d0;
   --color-link: var(--color-accent);
   --color-on-ink: #ffffff;
   --color-on-accent: #ffffff;
-  --color-badge-warm-text: #8a5a1a;
-  --color-badge-warm-border: #e3c79a;
-  --color-badge-warm-bg: #fbf3e4;
-  --color-dialog-backdrop: rgba(10, 10, 10, 0.92);
+
+  --color-badge-warm-text: #895c32;
+  --color-badge-warm-border: #e8c99e;
+  --color-badge-warm-bg: #ffe8c2;
+
+  --color-dialog-backdrop: rgba(25, 35, 25, 0.88);
   --color-dialog-control-bg: rgba(255, 255, 255, 0.1);
   --color-dialog-control-bg-hover: rgba(255, 255, 255, 0.25);
   --color-dialog-control-ink: #ffffff;
-  --rgb-ink: 20, 20, 20;
-  --rgb-accent: 46, 110, 94;
+
+  --rgb-ink: 32, 40, 32;
+  --rgb-accent: 106, 141, 115;
 
   --font-display: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -32,9 +36,9 @@
   --fs-h2: clamp(1.6rem, 3vw, 2.1rem);
   --fs-h3: 1.25rem;
   --fs-lead: clamp(1.125rem, 1.6vw, 1.3rem);
-  --fs-body: 1.0625rem; 
+  --fs-body: 1.0625rem;
   --fs-small: 0.9375rem;
-  --fs-meta: 0.8125rem; 
+  --fs-meta: 0.8125rem;
 
   --fw-light: 300;
   --fw-regular: 400;
@@ -62,10 +66,10 @@
   --space-24: 6rem;
   --space-32: 8rem;
 
-  --measure: 68ch;         
-  --container: 75rem;       
+  --measure: 68ch;
+  --container: 75rem;
   --container-narrow: 44rem;
-  --radius: 2px;           
+  --radius: 2px;
   --radius-lg: 4px;
 
   --section-y: clamp(2.25rem, 4vw, 3.5rem);
@@ -77,122 +81,27 @@
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #0f1413;
-  --color-surface: #171d1b;
-  --color-figure-mat: #f5f5f0;  
-  --color-accent: #75c7af;
-  --color-accent-dark: #9de2ce;
-  --color-muted: #a4aaa6;
-  --color-rule: #303934;
+  --color-bg: #2e0219;
+  --color-surface: #4a001f;
+  --color-figure-mat: #a7c4c2;
+  --color-ink: #f4fdd9;
+  --color-accent: #97efe9;
+  --color-accent-dark: #a7c4c2;
+  --color-muted: #a7c4c2;
+  --color-rule: #6a0f49;
   --color-link: var(--color-accent);
-  --color-on-ink: #0f1413;
-  --color-on-accent: #07110e;
-  --color-badge-warm-text: #e7c27f;
-  --color-badge-warm-border: #705a31;
-  --color-badge-warm-bg: #2b241a;
-  --color-dialog-backdrop: rgba(5, 7, 8, 0.94);
+  --color-on-ink: #2e0219;
+  --color-on-accent: #2e0219;
+
+  --color-badge-warm-text: #ffe8c2;
+  --color-badge-warm-border: #8d6048;
+  --color-badge-warm-bg: #4a2631;
+
+  --color-dialog-backdrop: rgba(20, 0, 12, 0.94);
   --color-dialog-control-bg: rgba(255, 255, 255, 0.12);
   --color-dialog-control-bg-hover: rgba(255, 255, 255, 0.26);
   --color-dialog-control-ink: #ffffff;
-  --rgb-ink: 242, 240, 234;
-  --rgb-accent: 117, 199, 175;
-}
-:root[data-theme='nord'] {
-  color-scheme: dark;
 
-  --color-bg: #242933;
-  --color-surface: #2e3440;
-  --color-figure-mat: #eceff4;
-  --color-ink: #eceff4;
-  --color-accent: #88c0d0;
-  --color-accent-dark: #81a1c1;
-  --color-muted: #94a3b8;
-  --color-rule: #3b4252;
-  --color-link: var(--color-accent);
-  --color-on-ink: #242933;
-  --color-on-accent: #242933;
-  --color-badge-warm-text: #ebcb8b;
-  --color-badge-warm-border: #d08770;
-  --color-badge-warm-bg: #2e3440;
-  --color-dialog-backdrop: rgba(15, 17, 23, 0.94);
-  --color-dialog-control-bg: rgba(255, 255, 255, 0.12);
-  --color-dialog-control-bg-hover: rgba(255, 255, 255, 0.25);
-  --color-dialog-control-ink: #ffffff;
-  --rgb-ink: 236, 239, 244;
-  --rgb-accent: 136, 192, 208;
-}
-
-:root[data-theme='monokai'] {
-  color-scheme: dark;
-
-  --color-bg: #1e1e24;
-  --color-surface: #282830;
-  --color-figure-mat: #fcfcfa;
-  --color-ink: #fcfcfa;
-  --color-accent: #ffd866;
-  --color-accent-dark: #ff6188;
-  --color-muted: #939293;
-  --color-rule: #363537;
-  --color-link: var(--color-accent);
-  --color-on-ink: #1e1e24;
-  --color-on-accent: #19181a;
-  --color-badge-warm-text: #ffd866;
-  --color-badge-warm-border: #78dce8;
-  --color-badge-warm-bg: #2d2a2e;
-  --color-dialog-backdrop: rgba(10, 10, 12, 0.94);
-  --color-dialog-control-bg: rgba(255, 255, 255, 0.12);
-  --color-dialog-control-bg-hover: rgba(255, 255, 255, 0.25);
-  --color-dialog-control-ink: #ffffff;
-  --rgb-ink: 252, 252, 250;
-  --rgb-accent: 255, 216, 102;
-}
-
-:root[data-theme='cyberdeck'] {
-  color-scheme: dark;
-
-  --color-bg: #070d14;
-  --color-surface: #0e1824;
-  --color-figure-mat: #e2f6fd;
-  --color-ink: #e2f6fd;
-  --color-accent: #22d3ee;
-  --color-accent-dark: #00e5ff;
-  --color-muted: #64748b;
-  --color-rule: #1e293b;
-  --color-link: var(--color-accent);
-  --color-on-ink: #070d14;
-  --color-on-accent: #020617;
-  --color-badge-warm-text: #38bdf8;
-  --color-badge-warm-border: #0284c7;
-  --color-badge-warm-bg: #0f172a;
-  --color-dialog-backdrop: rgba(3, 7, 12, 0.95);
-  --color-dialog-control-bg: rgba(34, 211, 238, 0.15);
-  --color-dialog-control-bg-hover: rgba(34, 211, 238, 0.3);
-  --color-dialog-control-ink: #ffffff;
-  --rgb-ink: 226, 246, 253;
-  --rgb-accent: 34, 211, 238;
-}
-
-:root[data-theme='parchment'] {
-  color-scheme: light;
-
-  --color-bg: #fbf5e6;
-  --color-surface: #f2ebda;
-  --color-figure-mat: transparent;
-  --color-ink: #2e241e;
-  --color-accent: #c2410c;
-  --color-accent-dark: #9a3412;
-  --color-muted: #786b59;
-  --color-rule: #e2d7c0;
-  --color-link: var(--color-accent);
-  --color-on-ink: #ffffff;
-  --color-on-accent: #ffffff;
-  --color-badge-warm-text: #9a3412;
-  --color-badge-warm-border: #fdba74;
-  --color-badge-warm-bg: #ffedd5;
-  --color-dialog-backdrop: rgba(20, 15, 10, 0.92);
-  --color-dialog-control-bg: rgba(0, 0, 0, 0.08);
-  --color-dialog-control-bg-hover: rgba(0, 0, 0, 0.18);
-  --color-dialog-control-ink: #2e241e;
-  --rgb-ink: 46, 36, 30;
-  --rgb-accent: 194, 65, 12;
+  --rgb-ink: 244, 253, 217;
+  --rgb-accent: 151, 239, 233;
 }

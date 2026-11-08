@@ -2,9 +2,8 @@
 import Icon from './Icon.astro';
 ---
 
-<div class="theme-switcher-container" aria-label="Site appearance and display settings">
-  <!-- Modern Themes -->
-  <div class="theme-segmented-group" role="radiogroup" aria-label="Modern Themes">
+<div class="theme-switcher-container" aria-label="Site appearance settings">
+  <div class="theme-segmented-group" role="radiogroup" aria-label="Color theme">
     <button
       type="button"
       class="theme-seg-btn"
@@ -34,152 +33,38 @@ import Icon from './Icon.astro';
       </span>
       <span class="theme-label">Dark</span>
     </button>
-
-    <button
-      type="button"
-      class="theme-seg-btn"
-      data-theme-choice="parchment"
-      role="radio"
-      aria-checked="false"
-      title="Switch to Bell Labs 1970s Sepia Parchment Theme"
-      aria-label="Parchment Theme"
-    >
-      <span class="theme-icon-wrap" aria-hidden="true">
-        <Icon name="parchment" size={14} />
-      </span>
-      <span class="theme-label">Parchment</span>
-    </button>
-
-    <button
-      type="button"
-      class="theme-seg-btn"
-      data-theme-choice="nord"
-      role="radio"
-      aria-checked="false"
-      title="Switch to Arctic Nord Computational Theme"
-      aria-label="Nord Theme"
-    >
-      <span class="theme-icon-wrap" aria-hidden="true">
-        <Icon name="nord" size={14} />
-      </span>
-      <span class="theme-label">Nord</span>
-    </button>
-
-    <button
-      type="button"
-      class="theme-seg-btn"
-      data-theme-choice="monokai"
-      role="radio"
-      aria-checked="false"
-      title="Switch to Monokai Pro Compiler Theme"
-      aria-label="Monokai Theme"
-    >
-      <span class="theme-icon-wrap" aria-hidden="true">
-        <Icon name="monokai" size={14} />
-      </span>
-      <span class="theme-label">Monokai</span>
-    </button>
-
-    <button
-      type="button"
-      class="theme-seg-btn"
-      data-theme-choice="cyberdeck"
-      role="radio"
-      aria-checked="false"
-      title="Switch to DEC VT220 / Cyberdeck Cyan Theme"
-      aria-label="Cyberdeck Theme"
-    >
-      <span class="theme-icon-wrap" aria-hidden="true">
-        <Icon name="cyberdeck" size={14} />
-      </span>
-      <span class="theme-label">Cyberdeck</span>
-    </button>
-  </div>
-
-  <div class="theme-switcher-spacer" aria-hidden="true"></div>
-
-  <!-- 1988 CRT Phosphor Displays -->
-  <div class="theme-segmented-group theme-segmented-group--crt" role="radiogroup" aria-label="1988 CRT Displays">
-    <button
-      type="button"
-      class="theme-seg-btn theme-seg-btn--amber"
-      data-crt-choice="amber"
-      role="radio"
-      aria-checked="false"
-      title="1988 NIH Supercomputer Amber CRT Mode"
-      aria-label="Amber CRT Mode"
-    >
-      <span class="theme-label">Amber CRT</span>
-    </button>
-
-    <button
-      type="button"
-      class="theme-seg-btn theme-seg-btn--green"
-      data-crt-choice="green"
-      role="radio"
-      aria-checked="false"
-      title="1988 NIH Supercomputer Green Phosphor CRT Mode"
-      aria-label="Green CRT Mode"
-    >
-      <span class="theme-label">Green CRT</span>
-    </button>
-
-    <button
-      type="button"
-      class="theme-seg-btn theme-seg-btn--cyan"
-      data-crt-choice="cyan"
-      role="radio"
-      aria-checked="false"
-      title="1988 DEC VT220 Cyan Phosphor CRT Mode"
-      aria-label="Cyan CRT Mode"
-    >
-      <span class="theme-label">Cyan CRT</span>
-    </button>
   </div>
 </div>
 
 <script>
   function syncThemeSwitcher() {
+    const container = document.querySelector('.theme-switcher-container');
+    if (!container) return;
+
     const currentTheme =
       (window as unknown as { __fpTheme?: { get: () => string } }).__fpTheme?.get() ||
       document.documentElement.dataset.theme ||
       'light';
-    const currentCrt =
-      (window as unknown as { __fpCrt?: { get: () => string } }).__fpCrt?.get() ||
-      document.documentElement.dataset.crtMode ||
-      'off';
-    const isCrt = currentCrt === 'amber' || currentCrt === 'green' || currentCrt === 'cyan';
 
-    document.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach((btn) => {
-      const choice = btn.dataset.themeChoice;
-      const isActive = !isCrt && choice === currentTheme;
-      btn.setAttribute('aria-checked', String(isActive));
-      btn.classList.toggle('is-active', isActive);
-    });
-
-    document.querySelectorAll<HTMLButtonElement>('[data-crt-choice]').forEach((btn) => {
-      const choice = btn.dataset.crtChoice;
-      const isActive = isCrt && choice === currentCrt;
+    container.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach((btn) => {
+      const isActive = btn.dataset.themeChoice === currentTheme;
       btn.setAttribute('aria-checked', String(isActive));
       btn.classList.toggle('is-active', isActive);
     });
   }
 
   function bindThemeSwitcherEvents() {
-    document.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach((btn) => {
+    const container = document.querySelector('.theme-switcher-container');
+    if (!container) return;
+
+    container.querySelectorAll<HTMLButtonElement>('[data-theme-choice]').forEach((btn) => {
       btn.onclick = () => {
         const choice = btn.dataset.themeChoice;
-        if (choice && (window as unknown as { __fpTheme?: { set: (t: string) => void } }).__fpTheme) {
-          (window as unknown as { __fpTheme: { set: (t: string) => void } }).__fpTheme.set(choice);
-        }
-      };
-    });
 
-    document.querySelectorAll<HTMLButtonElement>('[data-crt-choice]').forEach((btn) => {
-      btn.onclick = () => {
-        const choice = btn.dataset.crtChoice;
-        if (choice && (window as unknown as { __fpCrt?: { set: (m: string) => void } }).__fpCrt) {
-          (window as unknown as { __fpCrt: { set: (m: string) => void } }).__fpCrt.set(choice);
+        if (choice === 'light' || choice === 'dark') {
+          (window as unknown as {
+            __fpTheme?: { set: (theme: string) => void };
+          }).__fpTheme?.set(choice);
         }
       };
     });
@@ -189,7 +74,7 @@ import Icon from './Icon.astro';
 
   document.addEventListener('astro:page-load', bindThemeSwitcherEvents);
   document.addEventListener('fp:theme-change', syncThemeSwitcher);
-  document.addEventListener('fp:crt-change', syncThemeSwitcher);
+
   bindThemeSwitcherEvents();
 </script>
 
@@ -214,11 +99,6 @@ import Icon from './Icon.astro';
     align-items: center;
     justify-content: center;
     gap: 0.15rem;
-  }
-
-  .theme-switcher-spacer {
-    width: 6px;
-    height: 1px;
   }
 
   .theme-seg-btn {
@@ -247,29 +127,12 @@ import Icon from './Icon.astro';
     flex-shrink: 0;
   }
 
-  /* Segmented buttons theme icon accent colors */
   .theme-seg-btn[data-theme-choice='light'] .theme-icon-wrap {
     color: #f59e0b;
   }
 
   .theme-seg-btn[data-theme-choice='dark'] .theme-icon-wrap {
     color: #75c7af;
-  }
-
-  .theme-seg-btn[data-theme-choice='parchment'] .theme-icon-wrap {
-    color: #c2410c;
-  }
-
-  .theme-seg-btn[data-theme-choice='nord'] .theme-icon-wrap {
-    color: #88c0d0;
-  }
-
-  .theme-seg-btn[data-theme-choice='monokai'] .theme-icon-wrap {
-    color: #ffd866;
-  }
-
-  .theme-seg-btn[data-theme-choice='cyberdeck'] .theme-icon-wrap {
-    color: #22d3ee;
   }
 
   .theme-seg-btn:hover {
@@ -285,47 +148,11 @@ import Icon from './Icon.astro';
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   }
 
-  :global([data-theme='dark']) .theme-seg-btn.is-active,
-  :global([data-theme='nord']) .theme-seg-btn.is-active,
-  :global([data-theme='monokai']) .theme-seg-btn.is-active,
-  :global([data-theme='cyberdeck']) .theme-seg-btn.is-active {
+  :global([data-theme='dark']) .theme-seg-btn.is-active {
     background: var(--color-surface);
     border-color: var(--color-rule);
     color: var(--color-ink);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .theme-swatch-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: inline-block;
-  }
-  .theme-swatch-dot--light { background: #2e6e5e; border: 1px solid rgba(0,0,0,0.15); }
-  .theme-swatch-dot--parchment { background: #c2410c; border: 1px solid rgba(0,0,0,0.15); }
-  .theme-swatch-dot--dark { background: #75c7af; border: 1px solid rgba(255,255,255,0.25); }
-  .theme-swatch-dot--nord { background: #88c0d0; border: 1px solid rgba(255,255,255,0.25); }
-  .theme-swatch-dot--monokai { background: #ffd866; border: 1px solid rgba(255,255,255,0.25); }
-  .theme-swatch-dot--cyberdeck { background: #22d3ee; border: 1px solid rgba(255,255,255,0.25); }
-
-  /* Specific Phosphor Accent on CRT active buttons */
-  .theme-seg-btn--amber.is-active {
-    color: #ffb000 !important;
-    border-color: #ffb000 !important;
-    background: rgba(255, 176, 0, 0.12) !important;
-  }
-
-  .theme-seg-btn--green.is-active {
-    color: #33ff33 !important;
-    border-color: #33ff33 !important;
-    background: rgba(51, 255, 51, 0.12) !important;
-  }
-
-  .theme-seg-btn--cyan.is-active {
-    color: #38fdf8 !important;
-    border-color: #38fdf8 !important;
-    background: rgba(56, 253, 248, 0.12) !important;
   }
 
   .theme-label {
@@ -343,10 +170,6 @@ import Icon from './Icon.astro';
     .theme-segmented-group {
       width: 100%;
       justify-content: center;
-    }
-
-    .theme-switcher-spacer {
-      display: none;
     }
 
     .theme-seg-btn {
