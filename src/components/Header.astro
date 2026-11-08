@@ -6,7 +6,6 @@ const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, ''));
 
-// Only show primary items.
 const headerNav = nav.filter((item) => !item.footerOnly);
 ---
 
@@ -53,7 +52,7 @@ const headerNav = nav.filter((item) => !item.footerOnly);
           aria-haspopup="menu"
           aria-expanded="false"
           aria-label="Appearance settings"
-          title="Adjust color theme, ambient cells, or 1988 CRT mode"
+          title="Adjust color theme"
         >
           <span class="theme-icon-container">
             <span class="theme-toggle-icon theme-toggle-icon--light" aria-hidden="true">
@@ -223,7 +222,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     </div>
   </div>
 
-  <!-- Mobile Drawer -->
   <div class="mobile-menu" id="mobile-menu" hidden>
     <nav aria-label="Mobile">
       <ul>
@@ -315,7 +313,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
   .nav-desktop a[aria-current='page'] {
     color: var(--color-accent);
   }
-  /* Underline "splices" in from the left on hover/focus */
   .nav-desktop a::after {
     content: '';
     position: absolute;
@@ -370,7 +367,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     display: none;
   }
 
-  /* Top Theme Control Wrapper & Popover */
   .top-theme-wrapper {
     position: relative;
     display: inline-flex;
@@ -534,12 +530,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     box-sizing: border-box;
   }
 
-  .popover-section--cells {
-    margin-top: 0.15rem;
-    padding-top: 0.7rem;
-    border-top: 1px solid var(--color-rule);
-  }
-
   .popover-heading {
     font-size: 0.6875rem;
     font-weight: 700;
@@ -676,45 +666,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     font-weight: 600;
   }
 
-  .cell-mode-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.35rem;
-  }
-
-  .cell-mode-grid--two {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cell-lab-link-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    margin-top: 0.65rem;
-    padding: 0.45rem 0.75rem;
-    border-radius: 7px;
-    background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
-    border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
-    color: var(--color-ink);
-    font-size: 0.78125rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.15s ease;
-  }
-
-  .cell-lab-link-btn:hover {
-    background: color-mix(in srgb, var(--color-accent) 22%, var(--color-surface));
-    border-color: var(--color-accent);
-    transform: translateY(-1px);
-  }
-
-  .cell-action-row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.35rem;
-  }
-
   .popover-heading-row {
     display: flex;
     align-items: center;
@@ -784,81 +735,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     cursor: not-allowed;
   }
 
-  .cell-mode-grid--three {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.3rem;
-  }
-
-  .cell-control-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 0;
-    min-height: 36px;
-    padding: 0.45rem 0.4rem;
-    border: 1px solid var(--color-rule);
-    border-radius: 7px;
-    background: transparent;
-    color: var(--color-muted);
-    font-family: inherit;
-    font-size: 0.78125rem;
-    font-weight: 500;
-    line-height: 1.2;
-    cursor: pointer;
-    transition:
-      color 0.12s ease,
-      border-color 0.12s ease,
-      background-color 0.12s ease,
-      box-shadow 0.12s ease;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .cell-control-btn:hover {
-    color: var(--color-ink);
-    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
-  }
-
-  .cell-control-btn:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-  }
-
-  .cell-control-btn.is-active {
-    color: var(--color-ink);
-    border-color: var(--color-accent);
-    background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    font-weight: 650;
-  }
-
-  .cell-lab-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    margin-top: 0.2rem;
-    padding-top: 0.55rem;
-    border-top: 1px dashed var(--color-rule);
-  }
-
-  .cell-lab-actions[hidden] {
-    display: none;
-  }
-
-  .cell-control-hint,
-  .cell-reduced-motion-note {
-    color: var(--color-muted);
-    font-size: 0.6875rem;
-    line-height: 1.4;
-    padding-inline: 0.35rem;
-  }
-
-  .cell-reduced-motion-note {
-    display: none;
-    color: var(--color-ink);
-    margin-top: 0.15rem;
-  }
-
   .theme-swatch-dot {
     width: 9px;
     height: 9px;
@@ -895,7 +771,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     flex: 1;
   }
 
-  /* Mobile Drawer Menu */
   .mobile-menu {
     border-top: 1px solid var(--color-rule);
     background: var(--color-bg);
@@ -997,31 +872,6 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     background: rgba(56, 253, 248, 0.15) !important;
   }
 
-  .mobile-cell-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.25rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--color-rule);
-  }
-
-  .mobile-cell-controls .cell-control-btn {
-    min-height: 44px;
-    background: var(--color-surface);
-    font-size: 0.8125rem;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cell-control-btn {
-      transition: none;
-    }
-
-    .cell-reduced-motion-note {
-      display: block;
-    }
-  }
-
   @media (max-width: 960px) {
     .nav-desktop {
       display: none;
@@ -1077,8 +927,8 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     sync: () => void;
   }
 
-  const themeApi = () => (window as Window & { __khcTheme?: ThemeApi }).__khcTheme;
-  const crtApi = () => (window as Window & { __khcCrt?: CrtApi }).__khcCrt;
+  const themeApi = () => (window as Window & { __pipoTheme?: ThemeApi }).__pipoTheme;
+  const crtApi = () => (window as Window & { __pipoCrt?: CrtApi }).__pipoCrt;
 
   interface Nav {
     toggle: HTMLButtonElement;
@@ -1089,8 +939,7 @@ const headerNav = nav.filter((item) => !item.footerOnly);
   let popoverEl: HTMLElement | null = null;
   let topBtnEl: HTMLButtonElement | null = null;
   const headerWindow = window as Window & {
-    __khcHeaderEventsBound?: boolean;
-    __khcCellControlEventsBound?: boolean;
+    __pipoHeaderEventsBound?: boolean;
   };
 
   const isMenuOpen = () => nav?.toggle.getAttribute('aria-expanded') === 'true';
@@ -1266,15 +1115,14 @@ const headerNav = nav.filter((item) => !item.footerOnly);
     updateActiveNav();
   }
 
-  if (!headerWindow.__khcHeaderEventsBound) {
-    headerWindow.__khcHeaderEventsBound = true;
-    headerWindow.__khcCellControlEventsBound = true;
+  if (!headerWindow.__pipoHeaderEventsBound) {
+    headerWindow.__pipoHeaderEventsBound = true;
     document.addEventListener('keydown', handleHeaderKeydown);
     document.addEventListener('click', handleOutsideClick);
     window.matchMedia('(min-width: 960px)').addEventListener('change', handleDesktopLayout);
     document.addEventListener('astro:before-swap', closeHeaderMenus);
-    document.addEventListener('khc:theme-change', syncHeaderThemeIcons);
-    document.addEventListener('khc:crt-change', syncHeaderThemeIcons);
+    document.addEventListener('pipo:theme-change', syncHeaderThemeIcons);
+    document.addEventListener('pipo:crt-change', syncHeaderThemeIcons);
     document.addEventListener('astro:page-load', handleHeaderPageLoad);
   }
 

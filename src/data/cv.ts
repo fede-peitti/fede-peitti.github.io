@@ -1,5 +1,3 @@
-/** Career data sourced from the CV. Rendered on the home and teaching pages. */
-
 export type Position = {
   role: string;
   org: string;
@@ -9,6 +7,12 @@ export type Position = {
 };
 
 export const experience: Position[] = [
+  {
+    role: 'Scholar',
+    org: 'AISAR',
+    period: 'Oct 2026 – Present',
+    url: 'https://scholarship.aisafety.ar/',
+  },
   {
     role: 'Teaching Assistant',
     org: 'Universidad Torcuato Di Tella',
@@ -31,7 +35,7 @@ export const experience: Position[] = [
 
 export const education: Position[] = [
   {
-    role: 'B.Sc., Digital Technologies',
+    role: 'B.Sc. in Digital Technologies',
     org: 'Universidad Torcuato Di Tella',
     period: '2022 – 2025',
     url: 'https://www.utdt.edu/',
@@ -68,7 +72,9 @@ const LICENSE = {
   apache: { name: 'Apache 2.0', url: 'https://opensource.org/license/apache-2-0' },
 } as const;
 
+
 export const software: SoftwareTool[] = [
+  /** 
   {
     name: 'name',
     date: '2025-09-19',
@@ -80,15 +86,20 @@ export const software: SoftwareTool[] = [
     paper: 'https://doi.org/xxx',
     posts: ['xxx'],
   },
+  */
 ];
 
 export type SideProject = { name: string; detail: string; url: string };
 
 export const sideProjects: SideProject[] = [
+  /** 
   {
     name: 'name',
     detail:
       'detail',
     url: '/xxx/',
   },
+    */
 ];
+
+export const honors: Honor[] = [];

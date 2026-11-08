@@ -4,27 +4,29 @@
 
 export const site = {
   name: 'Federico Peitti',
-  role: '-',
+  role: 'Research Scholar, AISAR & Teaching Assistant, UTDT',
   shortRole: 'B.Sc. in Digital Technologies',
   tagline: 'placeholder tagline',
-  bio: `placeholder long bio`,
-  philosophy: 'placeholder quote',
+  bio: `I am interested in exploring and understanding how technologies can shape or learn from human behavior.
+   I have a B.Sc. in Digital Technologies from Universidad Torcuato Di Tella.`,
+  philosophy: 'Even the saddest endings turn into beautiful memories.',
   url: 'https://pipo.com',
   email: 'fede.peitti@gmail.com',
   description:
-    'placeholder description',
+    'Personal website.',
 };
 
 export const identity = {
-  jobTitle: 'jobTitle',
-  worksFor: { name: 'entity', url: 'https://www.illumina.com' },
+  jobTitle: 'Research Scholar at AISAR & Teaching Assistant at UTDT',
+  worksFor: { name: 'AISAR', url: 'https://scholarship.aisafety.ar/' },
   alumniOf: [
     { name: 'Universidad Torcuato Di Tella', url: 'https://www.utdt.edu/' },
   ],
   knowsAbout: [
-    'Topic A',
-    'Topic B',
-    'Topic C',
+    'Digital Technologies',
+    'Artificial Intelligence',
+    'AI Safety',
+    'Computer Science',
   ],
   alternateNames: [
     'Fede P',
@@ -37,25 +39,25 @@ export const identity = {
     'Federico Peitti',
     'fptt',
   ],
-  twitter: '@twitter',
+  twitter: '@fefe_peitti',
 };
 
 export type NavItem = { label: string; href: string; footerOnly?: boolean };
 
 export const nav: NavItem[] = [
   { label: 'Research', href: '/research/' },
-  { label: 'Projects', href: '/projects/', footerOnly: true },
-  { label: 'Publications', href: '/publications/' },
-  { label: 'Software', href: '/software/' },
-  { label: 'Talks', href: '/talks/' },
+  //{ label: 'Projects', href: '/projects/', footerOnly: true },
+  //{ label: 'Publications', href: '/publications/' },
+  //{ label: 'Software', href: '/software/' },
+  //{ label: 'Talks', href: '/talks/' },
   { label: 'Teaching', href: '/teaching/' },
   { label: 'CV', href: '/cv/', footerOnly: true },
   { label: 'Photos', href: '/photos/', footerOnly: true },
-  { label: 'Posts', href: '/posts/' },
-  { label: 'News', href: '/news/' },
-  { label: 'Search', href: '/search/', footerOnly: true },
-  { label: 'Algorithms', href: '/algorithms/', footerOnly: true },
-  { label: 'Papers', href: '/papers/', footerOnly: true },
+  // { label: 'Posts', href: '/posts/' },
+  // { label: 'News', href: '/news/' },
+  // { label: 'Search', href: '/search/', footerOnly: true },
+  // { label: 'Algorithms', href: '/algorithms/', footerOnly: true },
+  // { label: 'Papers', href: '/papers/', footerOnly: true },
   { label: 'Terminal', href: '/terminal/', footerOnly: true },
 ];
 
