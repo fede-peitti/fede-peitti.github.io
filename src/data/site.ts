@@ -11,7 +11,7 @@ export const site = {
    I have a B.Sc. in Digital Technologies from Universidad Torcuato Di Tella.`,
   philosophy: 'Even the saddest endings turn into beautiful memories.',
   url: 'https://pipo.com',
-  email: 'fede.peitti@gmail.com',
+  email: 'fede[dot]peitti[at]gmail[dot]com',
   description:
     'Personal website.',
 };
@@ -65,7 +65,7 @@ export type SocialKey =
   'email' |  'scholar' | 'github' | 'linkedin' ;
 
 export const socials: { key: SocialKey; label: string; href: string }[] = [
-  { key: 'email', label: 'Email', href: 'mailto:fede.peitti@gmail.com' },
+  { key: 'email', label: 'Email', href: 'mailto:fede[dot]peitti[at]gmail[dot]com' },
   /** 
   {
     key: 'scholar',

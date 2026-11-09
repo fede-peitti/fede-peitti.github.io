@@ -91,11 +91,11 @@ const STATIC_ACTIONS: CommandItem[] = [
     id: 'act-copy-email',
     category: 'Actions',
     title: 'Copy Email Address',
-    subtitle: 'Copy fede.peitti@gmail.com to clipboard',
+    subtitle: 'Copy fede[dot]peitti[at]gmail[dot]com to clipboard',
     badge: 'Contact',
     action: () => {
       if (navigator.clipboard) {
-        navigator.clipboard.writeText('fede.peitti@gmail.com');
+        navigator.clipboard.writeText('fede[dot]peitti[at]gmail[dot]com ');
       }
     },
     keywords: ['email', 'copy', 'contact', 'mail', 'reach out'],
