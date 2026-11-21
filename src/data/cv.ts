@@ -30,6 +30,7 @@ export const experience: Position[] = [
     role: 'Software Developer',
     org: 'Teknoware',
     period: 'Feb 2024 – Apr 2025',
+    url: 'https://teknoware.com.ar/',
   },
 ];
 

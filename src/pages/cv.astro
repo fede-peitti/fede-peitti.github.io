@@ -2,104 +2,48 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Icon from '../components/Icon.astro';
 
-const docs = [
-  { id: 'cv', label: 'CV', url: '/cv.pdf' },
-  { id: 'resume', label: 'Résumé', url: '/resume.pdf' },
-];
+const cvUrl = '/cv.pdf';
 ---
 
 <PageLayout
   title="CV"
   eyebrow="Curriculum vitae"
   lead="Background and experience."
-  description="Curriculum vitae and résumé of Federico Peitti."
+  description="Curriculum vitae of Federico Peitti."
 >
-  <div class="cv" data-cv>
-    <div class="cv-tabs" role="tablist" aria-label="Document">
-      {
-        docs.map((doc, i) => (
-          <button
-            type="button"
-            role="tab"
-            id={`tab-${doc.id}`}
-            aria-controls={`panel-${doc.id}`}
-            aria-selected={i === 0 ? 'true' : 'false'}
-            data-tab={doc.id}
-          >
-            {doc.label}
-          </button>
-        ))
-      }
+  <div class="cv">
+    <a
+      class="btn btn--accent cv-download"
+      href={cvUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name="file" size={18} /> Download PDF
+    </a>
+
+    <div class="cv-frame">
+      <iframe
+        src={cvUrl}
+        title="CV (PDF)"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      />
     </div>
 
-    {
-      docs.map((doc, i) => (
-        <section
-          id={`panel-${doc.id}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${doc.id}`}
-          data-panel={doc.id}
-          hidden={i !== 0}
-        >
-          <a
-            class="btn btn--accent cv-download"
-            href={doc.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="file" size={18} /> Download {doc.label} (PDF)
-          </a>
-          <div class="cv-frame">
-            <iframe
-              src={doc.url}
-              title={`${doc.label} (PDF)`}
-              loading="lazy"
-              referrerpolicy="no-referrer"
-            />
-          </div>
-          <a class="cv-mobile" href={doc.url} target="_blank" rel="noopener noreferrer">
-            <span class="cv-mobile-ic">
-              <Icon name="file" size={26} />
-            </span>
-            <span class="cv-mobile-text">
-              <strong>Open the {doc.label} full screen</strong>
-              <span class="muted">Opens the PDF in your device's viewer</span>
-            </span>
-            <Icon name="arrow-right" size={18} />
-          </a>
-        </section>
-      ))
-    }
+    <a class="cv-mobile" href={cvUrl} target="_blank" rel="noopener noreferrer">
+      <span class="cv-mobile-ic">
+        <Icon name="file" size={26} />
+      </span>
+      <span class="cv-mobile-text">
+        <strong>Open the CV full screen</strong>
+        <span class="muted">Opens the PDF in your device's viewer</span>
+      </span>
+      <Icon name="arrow-right" size={18} />
+    </a>
   </div>
 </PageLayout>
 
 <style>
-  .cv-tabs {
-    display: inline-flex;
-    gap: 0.25rem;
-    padding: 0.25rem;
-    border: 1px solid var(--color-rule);
-    border-radius: 999px;
-    margin-bottom: var(--space-6);
-  }
-
-  .cv-tabs button {
-    border: none;
-    background: transparent;
-    padding: 0.45em 1.4em;
-    border-radius: 999px;
-    font-size: var(--fs-small);
-    font-weight: var(--fw-medium);
-    color: var(--color-muted);
-    cursor: pointer;
-    transition: all var(--transition);
-  }
-
-  .cv-tabs button[aria-selected='true'] {
-    background: var(--color-ink);
-    color: var(--color-bg);
-  }
-
   .cv-download {
     margin-bottom: var(--space-5);
   }
@@ -161,21 +105,3 @@ const docs = [
     }
   }
 </style>
-
-<script>
-  const root = document.querySelector<HTMLElement>('[data-cv]');
-
-  if (root) {
-    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tab]'));
-    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-panel]'));
-
-    tabs.forEach((tab) =>
-      tab.addEventListener('click', () => {
-        const id = tab.dataset.tab;
-
-        tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
-        panels.forEach((p) => (p.hidden = p.dataset.panel !== id));
-      })
-    );
-  }
-</script>
